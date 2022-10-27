@@ -7,7 +7,7 @@
     <meta name="description" content="Jugar memorama en línea">
     <title>Leonardo Muñoz Capuchino</title>
     <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/styles.css" rel="stylesheet">
+    <link href="./css/styles.css" rel="stylesheet">
 </head>
 
 <body>
@@ -15,11 +15,11 @@
         <div class="row">
             <div class="col-12">
                 <h1 class="text-center">Juego de memorama</h1>
-                <!-- <p>
+                <p>
                         <span class="h5">Intentos: </span>
-                        {{intentos}}/{{MAXIMOS_INTENTOS}}&nbsp;<span class="h5">Aciertos:
-                        </span> {{aciertos}}
-                    </p> -->
+                        {{attempts}}/{{maximumAttempts}}&nbsp;<span class="h5">Aciertos:
+                        </span> {{hits}}
+                    </p>
             </div>
         </div>
         <div v-for="(fila, rowIndex) in memorama" :key="rowIndex" class="row">
