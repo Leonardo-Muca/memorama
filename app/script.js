@@ -1,4 +1,4 @@
-const maximumAttempts = 5; // Numero de errores maximos
+const maximumAttempts = 15; // Numero de errores maximos
 const columns = 4; // Numero de columnas que tendra el memorama
 const secondsToShowImage = 1; // Cuantos segundos se mostrara la imagen
 const questionImage = "./img/question.png"; // Imagen que se muestra antes de turnCard la imagen
