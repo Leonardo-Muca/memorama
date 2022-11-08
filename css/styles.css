@@ -1,12 +1,22 @@
 img.card-img-top {
     object-fit: cover;
     cursor: pointer;
-    max-height: 150px !important;
-    max-width: 150px !important;
+    max-height: 100px !important;
+    max-width: 100px !important;
 }
 
 img.card-img-top.girar {
     animation: fadein 2s;
+}
+
+.errorClass{
+    border-color: red;
+    border: 10px;
+}
+
+.activeClass {
+    border-color: green;
+    border: 10px;
 }
 
 @keyframes fadein {
