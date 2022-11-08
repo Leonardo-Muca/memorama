@@ -1,15 +1,15 @@
-const maximumAttempts = 50; // Numero de errores maximos
+const maximumAttempts = 5; // Numero de errores maximos
 const columns = 4; // Numero de columnas que tendra el memorama
 const secondsToShowImage = 1; // Cuantos segundos se mostrara la imagen
 const questionImage = "./img/question.png"; // Imagen que se muestra antes de turnCard la imagen
-let randomOne = Math.floor(Math.random() * ((4+1)-1)+1);
-let randomTwo = Math.floor(Math.random() * ((8+1)-5)+5);
-let randomThree = Math.floor(Math.random() * ((12+1)-9)+9);
-let randomFour = Math.floor(Math.random() * ((16+1)-13)+13);
-let randomFive = Math.floor(Math.random() * ((20+1)-17)+17);
-let randomSix = Math.floor(Math.random() * ((24+1)-21)+21);
-let randomSeven = Math.floor(Math.random() * ((28+1)-25)+25);
-let randomEight = Math.floor(Math.random() * ((32+1)-29)+29);
+let randomOne = Math.floor(Math.random() * ((4 + 1) - 1) + 1);
+let randomTwo = Math.floor(Math.random() * ((8 + 1) - 5) + 5);
+let randomThree = Math.floor(Math.random() * ((12 + 1) - 9) + 9);
+let randomFour = Math.floor(Math.random() * ((16 + 1) - 13) + 13);
+let randomFive = Math.floor(Math.random() * ((20 + 1) - 17) + 17);
+let randomSix = Math.floor(Math.random() * ((24 + 1) - 21) + 21);
+let randomSeven = Math.floor(Math.random() * ((28 + 1) - 25) + 25);
+let randomEight = Math.floor(Math.random() * ((32 + 1) - 29) + 29);
 console.log(randomOne, randomTwo, randomThree, randomFour, randomFive, randomSix, randomSeven, randomEight);
 
 new Vue({
@@ -17,14 +17,14 @@ new Vue({
     data: () => ({
         // Imagenes a mostrar
         images: [
-            `./img/${randomOne}.png`,   
-            `./img/${randomTwo}.png`,   
-            `./img/${randomThree}.png`,   
-            `./img/${randomFour}.png`,   
-            `./img/${randomFive}.png`,   
-            `./img/${randomSix}.png`,   
-            `./img/${randomSeven}.png`,   
-            `./img/${randomEight}.png`,   
+            `./img/${randomOne}.png`,
+            `./img/${randomTwo}.png`,
+            `./img/${randomThree}.png`,
+            `./img/${randomFour}.png`,
+            `./img/${randomFive}.png`,
+            `./img/${randomSix}.png`,
+            `./img/${randomSeven}.png`,
+            `./img/${randomEight}.png`,
         ],
         memorama: [],
         lastCoordinates: {
@@ -38,6 +38,31 @@ new Vue({
         timeout: false,
     }),
     methods: {
+        endGame() {
+            Swal.fire({
+                title: "Perdiste",
+                html: `
+                <img class="img-fluid" src="./img/perdiste.jpg" alt="Perdiste">
+                <p class="h4">Agotaste tus intentos</p>`,
+                confirmButtonText: "Jugar de nuevo",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+            })
+                .then(this.restartGame)
+        },
+        // Mostrar alerta de victoria y reiniciar juego
+        alertWinner() {
+            Swal.fire({
+                title: "¡Ganaste!",
+                html: `
+                <img class="img-fluid" src="./img/ganaste.webp" alt="Ganaste">
+                <p class="h4">Muy bien hecho</p>`,
+                confirmButtonText: "Jugar de nuevo",
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+            })
+                .then(this.restartGame)
+        },
         // Método que indica si el jugador ha ganado
         isWinner() {
             return this.memorama.every(arreglo => arreglo.every(imagen => imagen.acertada));
@@ -100,7 +125,7 @@ new Vue({
                 this.lastCoordinates.imageIndex = null;
                 // Cada que acierta comprobamos si ha ganado
                 if (this.isWinner()) {
-                    this.indicarVictoria();
+                    this.alertWinner();
                 }
             } else {
                 // Si no acierta, entonces giramos ambas imágenes
